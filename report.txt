@@ -1,0 +1,60 @@
+Task: Fine-Tuning a Pretrained Model
+
+Model Used:
+ResNet-18 pretrained on the ImageNet dataset.
+
+Dataset:
+The CIFAR-10 dataset was used, which consists of 10 image classes.
+The dataset was divided into training and test sets as provided.
+
+Dataset Preparation:
+Images from the CIFAR-10 dataset were resized to match the input
+requirements of the pretrained model. The images were then converted
+into tensors and normalized before being fed into the network.
+
+Final Layer Modification:
+The pretrained ResNet-18 model originally outputs predictions for
+1000 ImageNet classes. To adapt it for CIFAR-10, the final fully
+connected layer was replaced with a new layer having 10 output
+neurons corresponding to the CIFAR-10 classes.
+
+Method:
+Transfer learning was applied by using the pretrained ResNet-18
+model as a feature extractor. The convolutional backbone was frozen
+to reduce computational cost, and only the final classification
+layer was fine-tuned on the CIFAR-10 dataset.
+
+Training Details:
+Optimizer: Adam  
+Loss Function: CrossEntropyLoss  
+Learning Rate: 0.001  
+Epochs: 3  
+Hardware: CPU  
+
+Performance Tracking:
+Training accuracy was recorded after each epoch. A plot of training
+accuracy versus epochs was generated to visualize the learning
+behavior of the model.
+
+Results:
+The training accuracy increased steadily across epochs, indicating
+successful learning. The final training accuracy reached approximately
+74%. The final test accuracy achieved was approximately 75.10%.
+
+Analysis:
+The use of a pretrained model enabled faster convergence and
+reasonable performance despite limited training epochs and
+hardware constraints. Freezing the convolutional layers helped
+reduce training time while still benefiting from pretrained features.
+
+Failure Cases:
+Some misclassifications were observed between visually similar
+classes such as cats and dogs. This can be attributed to the low
+resolution of CIFAR-10 images and limited fine-tuning of earlier
+convolutional layers.
+
+Conclusion:
+This experiment demonstrates that transfer learning significantly
+improves learning efficiency and performance on small datasets.
+Using a pretrained ResNet-18 model allowed effective adaptation
+to a new task with reduced training time and computational cost.
